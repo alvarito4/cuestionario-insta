@@ -8,7 +8,7 @@
 <style>
   body {
     font-family: 'Segoe UI', sans-serif;
-    background: #f5f7fa;
+    background: #f4f4f7;
     margin: 0;
     padding: 0;
     display: flex;
@@ -20,11 +20,11 @@
   .card {
     background: white;
     width: 90%;
-    max-width: 450px;
+    max-width: 480px;
     margin-top: 40px;
     padding: 25px;
-    border-radius: 16px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    border-radius: 18px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.12);
     animation: fadeIn 0.4s ease;
   }
 
@@ -36,18 +36,18 @@
   p {
     text-align: center;
     color: #555;
-    font-size: 18px;
+    font-size: 17px;
   }
 
   .btn {
     display: block;
     width: 100%;
-    padding: 12px;
+    padding: 14px;
     margin: 10px 0;
     background: #4a6cf7;
     color: white;
     border: none;
-    border-radius: 10px;
+    border-radius: 12px;
     font-size: 16px;
     cursor: pointer;
     transition: 0.2s;
@@ -57,20 +57,27 @@
     background: #3a55c9;
   }
 
-  .btn-red {
-    background: #e74c3c;
+  /* Colores especiales */
+  .btn-rosa {
+    background: #ff5fa8;
+  }
+  .btn-rosa:hover {
+    background: #e64c93;
   }
 
-  .btn-red:hover {
-    background: #c0392b;
+  .btn-azul {
+    background: #4a6cf7;
+  }
+  .btn-azul:hover {
+    background: #3a55c9;
   }
 
-  .btn-green {
-    background: #2ecc71;
-  }
-
-  .btn-green:hover {
-    background: #27ae60;
+  .descripcion {
+    font-size: 14px;
+    color: #777;
+    margin-top: -5px;
+    margin-bottom: 10px;
+    text-align: center;
   }
 
   @keyframes fadeIn {
@@ -93,55 +100,66 @@ function mostrar(html) {
   document.getElementById("contenedor").innerHTML = html;
 }
 
+/* PANTALLA INICIAL */
 function inicio() {
   mostrar(`
     <h3>¿Eres chico o chica?</h3>
-    <button class="btn" onclick="paginaChico()">Chico</button>
-    <button class="btn" onclick="preguntaConsideras()">Chica</button>
+    <button class="btn-azul" onclick="paginaChico()">Chico</button>
+    <button class="btn-rosa" onclick="preguntaConsideras()">Chica</button>
   `);
 }
 
+/* CHICOS → AZUL */
 function paginaChico() {
   mostrar(`
-    <h3>Fortnite o Warzone?</h3>
+    <h3 style="color:#4a6cf7;">Fortnite o Warzone?</h3>
     <p>Gracias por participar 😎</p>
   `);
 }
 
+/* CHICAS → ROSA */
 function preguntaConsideras() {
   mostrar(`
-    <h3>¿Qué me consideras?</h3>
-    <button class="btn-green" onclick="paginaGracias()">Amigo</button>
-    <button class="btn-red" onclick="paginaVete()">Nada</button>
-    <button class="btn" onclick="paginaSegura()">Conocerme más</button>
+    <h3 style="color:#ff5fa8;">¿Qué me consideras?</h3>
+
+    <button class="btn-rosa" onclick="paginaAmigo()">Amigo</button>
+    <p class="descripcion">Alguien con quien hablas, te cae bien y confías.</p>
+
+    <button class="btn-rosa" onclick="paginaNada()">Nada</button>
+    <p class="descripcion">No hay conexión, no hablas mucho o no te interesa.</p>
+
+    <button class="btn-rosa" onclick="paginaSegura()">Conocerme más</button>
+    <p class="descripcion">Te llamo la atención y quieres saber más de mí.</p>
   `);
 }
 
-function paginaGracias() {
+/* RESULTADOS CHICAS */
+function paginaAmigo() {
   mostrar(`
-    <h3>Gracias ❤️</h3>
+    <h3 style="color:#ff5fa8;">Gracias ❤️</h3>
     <p>Escríbeme por privado.</p>
   `);
 }
 
-function paginaVete() {
+function paginaNada() {
   mostrar(`
-    <h3>Pues vete 😘</h3>
+    <h3 style="color:#ff5fa8;">Pues vete 😘</h3>
   `);
 }
 
+/* SEGURA x3 */
 function paginaSegura() {
   contadorSegura++;
 
   if (contadorSegura < 3) {
     mostrar(`
-      <h3>¿Segura?</h3>
-      <button class="btn" onclick="paginaSegura()">Segura</button>
+      <h3 style="color:#ff5fa8;">¿Segura?</h3>
+      <button class="btn-rosa" onclick="paginaSegura()">Segura</button>
     `);
   } else {
     mostrar(`
-      <h3>Vale… ahora sí 😏</h3>
-      <p><a href="https://forms.gle/dwRUGMVPnAjRexsg7" target="_blank" class="btn">Haz clic aquí</a></p>
+      <h3 style="color:#ff5fa8;">Vale… ahora sí 😏</h3>
+      <p><a href="https://forms.gle/dwRUGMVPnAjRexsg7" target="_blank" class="btn-rosa">Haz clic aquí</a></p>
     `);
   }
 }
