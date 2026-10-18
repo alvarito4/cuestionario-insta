@@ -3,80 +3,149 @@
 <head>
 <meta charset="UTF-8">
 <title>Cuestionario</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <style>
-  body { font-family: Arial; padding: 20px; }
-  .pregunta { margin-bottom: 20px; }
-  button { margin: 8px; padding: 10px 15px; font-size: 16px; }
+  body {
+    font-family: 'Segoe UI', sans-serif;
+    background: #f5f7fa;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+  }
+
+  .card {
+    background: white;
+    width: 90%;
+    max-width: 450px;
+    margin-top: 40px;
+    padding: 25px;
+    border-radius: 16px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    animation: fadeIn 0.4s ease;
+  }
+
+  h2, h3 {
+    text-align: center;
+    color: #333;
+  }
+
+  p {
+    text-align: center;
+    color: #555;
+    font-size: 18px;
+  }
+
+  .btn {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    background: #4a6cf7;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.2s;
+  }
+
+  .btn:hover {
+    background: #3a55c9;
+  }
+
+  .btn-red {
+    background: #e74c3c;
+  }
+
+  .btn-red:hover {
+    background: #c0392b;
+  }
+
+  .btn-green {
+    background: #2ecc71;
+  }
+
+  .btn-green:hover {
+    background: #27ae60;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
 </style>
 </head>
+
 <body>
 
-<h2>Cuestionario</h2>
-<div id="contenedor"></div>
+<div class="card" id="contenedor">
+  <h2>Cuestionario</h2>
+</div>
 
 <script>
 let contadorSegura = 0;
 
-// Páginas finales
-function paginaFortnite() {
-  document.getElementById("contenedor").innerHTML = `
+function mostrar(html) {
+  document.getElementById("contenedor").innerHTML = html;
+}
+
+function inicio() {
+  mostrar(`
+    <h3>¿Eres chico o chica?</h3>
+    <button class="btn" onclick="paginaChico()">Chico</button>
+    <button class="btn" onclick="preguntaConsideras()">Chica</button>
+  `);
+}
+
+function paginaChico() {
+  mostrar(`
     <h3>Fortnite o Warzone?</h3>
-  `;
+    <p>Gracias por participar 😎</p>
+  `);
+}
+
+function preguntaConsideras() {
+  mostrar(`
+    <h3>¿Qué me consideras?</h3>
+    <button class="btn-green" onclick="paginaGracias()">Amigo</button>
+    <button class="btn-red" onclick="paginaVete()">Nada</button>
+    <button class="btn" onclick="paginaSegura()">Conocerme más</button>
+  `);
 }
 
 function paginaGracias() {
-  document.getElementById("contenedor").innerHTML = `
+  mostrar(`
     <h3>Gracias ❤️</h3>
     <p>Escríbeme por privado.</p>
-  `;
+  `);
 }
 
 function paginaVete() {
-  document.getElementById("contenedor").innerHTML = `
+  mostrar(`
     <h3>Pues vete 😘</h3>
-  `;
+  `);
 }
 
 function paginaSegura() {
   contadorSegura++;
 
   if (contadorSegura < 3) {
-    document.getElementById("contenedor").innerHTML = `
+    mostrar(`
       <h3>¿Segura?</h3>
-      <button onclick="paginaSegura()">Segura</button>
-    `;
+      <button class="btn" onclick="paginaSegura()">Segura</button>
+    `);
   } else {
-    document.getElementById("contenedor").innerHTML = `
+    mostrar(`
       <h3>Vale… ahora sí 😏</h3>
-      <p><a href="https://forms.gle/nZyW4MN8G5sfML1e8" target="_blank">Haz clic aquí</a></p>
-    `;
+      <p><a href="https://forms.gle/dwRUGMVPnAjRexsg7" target="_blank" class="btn">Haz clic aquí</a></p>
+    `);
   }
 }
 
-// Pregunta inicial
-function inicio() {
-  document.getElementById("contenedor").innerHTML = `
-    <div class="pregunta">
-      <p>¿Eres chico o chica?</p>
-      <button onclick="paginaFortnite()">Chico</button>
-      <button onclick="preguntaConsideras()">Chica</button>
-    </div>
-  `;
-}
-
-// Pregunta para chicas
-function preguntaConsideras() {
-  document.getElementById("contenedor").innerHTML = `
-    <div class="pregunta">
-      <p>¿Qué me consideras?</p>
-      <button onclick="paginaGracias()">Amigo</button>
-      <button onclick="paginaVete()">Nada</button>
-      <button onclick="paginaSegura()">Conocerme más</button>
-    </div>
-  `;
-}
-
-// Iniciar
 inicio();
 </script>
 
