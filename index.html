@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Cuestionario</title>
+<style>
+  body { font-family: Arial; padding: 20px; }
+  .pregunta { margin-bottom: 20px; }
+  button { margin: 8px; padding: 10px 15px; font-size: 16px; }
+</style>
+</head>
+<body>
+
+<h2>Cuestionario</h2>
+<div id="contenedor"></div>
+
+<script>
+let contadorSegura = 0;
+
+// Páginas finales
+function paginaFortnite() {
+  document.getElementById("contenedor").innerHTML = `
+    <h3>Fortnite o Warzone?</h3>
+  `;
+}
+
+function paginaGracias() {
+  document.getElementById("contenedor").innerHTML = `
+    <h3>Gracias ❤️</h3>
+    <p>Escríbeme por privado.</p>
+  `;
+}
+
+function paginaVete() {
+  document.getElementById("contenedor").innerHTML = `
+    <h3>Pues vete 😘</h3>
+  `;
+}
+
+function paginaSegura() {
+  contadorSegura++;
+
+  if (contadorSegura < 3) {
+    document.getElementById("contenedor").innerHTML = `
+      <h3>¿Segura?</h3>
+      <button onclick="paginaSegura()">Segura</button>
+    `;
+  } else {
+    document.getElementById("contenedor").innerHTML = `
+      <h3>Vale… ahora sí 😏</h3>
+      <p><a href="TU_LINK_AQUI" target="_blank">Haz clic aquí</a></p>
+    `;
+  }
+}
+
+// Pregunta inicial
+function inicio() {
+  document.getElementById("contenedor").innerHTML = `
+    <div class="pregunta">
+      <p>¿Eres chico o chica?</p>
+      <button onclick="paginaFortnite()">Chico</button>
+      <button onclick="preguntaConsideras()">Chica</button>
+    </div>
+  `;
+}
+
+// Pregunta para chicas
+function preguntaConsideras() {
+  document.getElementById("contenedor").innerHTML = `
+    <div class="pregunta">
+      <p>¿Qué me consideras?</p>
+      <button onclick="paginaGracias()">Amigo</button>
+      <button onclick="paginaVete()">Nada</button>
+      <button onclick="paginaSegura()">Conocerme más</button>
+    </div>
+  `;
+}
+
+// Iniciar
+inicio();
+</script>
+
+</body>
+</html>
